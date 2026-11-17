@@ -22,8 +22,8 @@
     "secondaryCta": "Submit Online Request"
   },
   "services": {
-    "title": "Services & Pricing",
-    "subtitle": "Active roadside and towing services with transparent pricing",
+    "title": "Every stop has a way forward.",
+    "subtitle": "From vehicle transport to help at the roadside. Find the assistance that fits your situation.",
     "empty": "No active services at the moment.",
     "pricing": {
       "fixed": "Fixed price",
@@ -38,8 +38,8 @@
     "subtitle": "A reliable team for roadside emergencies"
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "For emergencies, call us right away",
+    "title": "Your next step starts here.",
+    "subtitle": "Tell us where you are and what happened. Let’s discuss the right assistance.",
     "phone": "Phone",
     "secondaryPhone": "Secondary phone",
     "address": "Address",
@@ -188,5 +188,45 @@
     "saving": "Saving…",
     "error": "Error",
     "success": "Success"
+  },
+  "experience": {
+    "eyebrow": "ROADSIDE ASSISTANCE, WITH CARE",
+    "heroAccent": "A calmer way forward.",
+    "heroNote": "For urgent assistance, a direct call is always best.",
+    "heroAlt": "A flatbed tow truck carrying a silver car on a mountain road",
+    "imageLabel": "CARE THAT GOES THE DISTANCE",
+    "imageCaption": "For the unexpected. For the road ahead.",
+    "careTitle": "Your vehicle. In good hands.",
+    "careBody": "Thoughtful assistance, from first call to arrival.",
+    "promise1": "A direct conversation",
+    "promise1Body": "Tell us what happened. We’ll help you find the next step.",
+    "promise2": "Your location, made simple",
+    "promise2Body": "Share a map pin or a nearby landmark.",
+    "promise3": "Clarity before you travel",
+    "promise3Body": "Discuss the service and cost before confirming.",
+    "servicesEyebrow": "THE RIGHT HELP FOR YOUR JOURNEY",
+    "allServices": "Explore our services",
+    "pricingNote": "Prices are in Toman. Distance, vehicle type and the assistance required may affect the final cost. Please confirm by phone.",
+    "processEyebrow": "A SIMPLE NEXT STEP",
+    "processTitle": "From roadside to reassurance.",
+    "processBody": "You don’t need to have all the answers. Start with where you are and what your vehicle needs.",
+    "step1Title": "Tell us what you need",
+    "step1Body": "Call directly, or send an online request with your vehicle and service details.",
+    "step2Title": "Share your location",
+    "step2Body": "Use the map, your current location, or an address and a recognizable landmark.",
+    "step3Title": "Agree on the next step",
+    "step3Body": "Discuss the right assistance, destination and pricing with us before proceeding.",
+    "detailAlt": "Close-up of a recovery technician securing a vehicle wheel on a flatbed",
+    "detailCaption": "IT’S THE DETAILS THAT MATTER.",
+    "aboutTitle": "More care. Less uncertainty.",
+    "aboutBody": "A breakdown can interrupt your day. Getting help shouldn’t add to the stress. We make it easier to explain the problem, share your location and arrange the next step.",
+    "talkToUs": "Let’s talk about your journey",
+    "contactEyebrow": "WHEN THE ROAD HAS OTHER PLANS",
+    "contactTitle": "Let’s get you moving again.",
+    "contactBody": "Not sure which service you need? Tell us what happened and we’ll discuss the options.",
+    "brandLine": "Towing & roadside assistance",
+    "menu": "Open navigation",
+    "closeMenu": "Close navigation",
+    "footerText": "Thoughtful help for the unexpected. A clearer path to your next destination."
   }
 }

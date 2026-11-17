@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useMemo, useState, useTransition } from "react";
+import { useActionState, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import dynamic from "next/dynamic";
 import type { Service } from "@prisma/client";
 import { X, MapPin, CheckCircle2 } from "lucide-react";
@@ -53,6 +53,7 @@ export function RequestForm({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [step, setStep] = useState(1);
   const [serviceId, setServiceId] = useState("");
   const [vehicleType, setVehicleType] = useState("");
@@ -65,13 +66,15 @@ export function RequestForm({
   );
 
   useEffect(() => {
-    if (!open) {
-      setStep(1);
-      setServiceId("");
-      setVehicleType("");
-      setLat(null);
-      setLng(null);
-    }
+    if (!open) return;
+    const dialog = dialogRef.current;
+    dialog?.showModal();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog?.close();
+      document.body.style.overflow = previousOverflow;
+    };
   }, [open]);
 
   const success = state?.ok === true;
@@ -101,11 +104,11 @@ export function RequestForm({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60">
+    <dialog ref={dialogRef} aria-labelledby="request-dialog-title" onCancel={() => onOpenChange(false)} className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-black/60 p-0 text-zinc-900 backdrop:bg-transparent">
       <div className="mx-auto flex h-full max-w-lg flex-col bg-white shadow-2xl">
         <div className="flex items-center justify-between border-b border-zinc-200 px-4 py-3">
           <div>
-            <p className="font-bold text-zinc-900">{dict.request.title}</p>
+            <h2 id="request-dialog-title" className="font-bold text-zinc-900">{dict.request.title}</h2>
             {!success && (
               <p className="text-xs text-zinc-500">
                 {interpolate(dict.request.stepOf, {
@@ -346,6 +349,6 @@ export function RequestForm({
           )}
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

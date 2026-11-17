@@ -35,12 +35,12 @@ export default async function ServicesPage({
   ]);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
-      <h1 className="text-3xl font-bold text-zinc-900">{dict.services.title}</h1>
-      <p className="mt-2 text-zinc-600">{dict.services.subtitle}</p>
-      <div className="mt-8">
+    <div className="site-container pb-20">
+      <div className="public-page-heading"><p className="eyebrow">{dict.experience.servicesEyebrow}</p><h1>{dict.services.title}</h1><p>{dict.services.subtitle}</p></div>
+      <div className="mt-2">
         <ServiceCards services={services} locale={locale} dict={dict} />
       </div>
+      <p className="pricing-note">{dict.experience.pricingNote}</p>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Phone } from "lucide-react";
 import { getBusinessSettings } from "@/lib/data";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
@@ -35,19 +36,18 @@ export default async function ContactPage({
   ]);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-3xl font-bold text-zinc-900">{dict.contact.title}</h1>
-      <p className="mt-2 text-zinc-600">{dict.contact.subtitle}</p>
+    <div className="site-container">
+      <div className="public-page-heading"><p className="eyebrow">{dict.experience.contactEyebrow}</p><h1>{dict.contact.title}</h1><p>{dict.contact.subtitle}</p></div>
 
-      <div className="mt-8 space-y-4 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <div className="contact-page-grid"><div className="contact-page-card">
         <div>
           <p className="text-sm font-medium text-zinc-500">{dict.contact.phone}</p>
           <a
             href={`tel:${settings.phoneNumber}`}
             className="mt-1 inline-flex items-center gap-2 text-xl font-bold text-zinc-900"
           >
-            <Phone className="h-5 w-5 text-red-700" />
-            {settings.phoneNumber}
+            <Phone className="h-5 w-5 text-amber-700" />
+            <span dir="ltr">{settings.phoneNumber}</span>
           </a>
         </div>
         {settings.secondaryPhoneNumber && (
@@ -71,7 +71,9 @@ export default async function ContactPage({
             <p className="mt-1 text-zinc-800">{settings.address}</p>
           </div>
         )}
-      </div>
+        <a href={`tel:${settings.phoneNumber}`} className="premium-button"><Phone size={18} />{dict.contact.callNow}</a>
+        <p className="mt-5 text-sm leading-7 text-zinc-500">{dict.experience.heroNote}</p>
+      </div><div className="about-visual h-full min-h-80"><Image src="/images/towing-editorial.webp" alt={dict.experience.heroAlt} fill sizes="(max-width: 600px) 100vw, 50vw" className="object-cover" /><span>{dict.experience.imageLabel}</span></div></div>
     </div>
   );
 }
