@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum PricingType {
+  FIXED
+  PER_KILOMETER
+  NEGOTIABLE
+}
+
+enum RequestStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Service {
+  id                 String      @id @default(cuid())
+  slug               String      @unique
+  titleFa            String
+  titleEn            String
+  descriptionFa      String
+  descriptionEn      String
+  pricingType        PricingType
+  /// Monetary amounts stored as integer Toman (no floating point)
+  basePrice          Int?
+  pricePerKilometer  Int?
+  isActive           Boolean     @default(true)
+  sortOrder          Int         @default(0)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  requests           Request[]
+
+  @@index([isActive, sortOrder])
+}
+
+model Request {
+  id            String        @id @default(cuid())
+  customerName  String
+  phoneNumber   String
+  address       String
+  note          String?
+  vehicleType   String
+  latitude      Float?
+  longitude     Float?
+  status        RequestStatus @default(NEW)
+  serviceId     String
+  service       Service       @relation(fields: [serviceId], references: [id])
+  adminNote     String?
+  locale        String        @default("fa")
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([phoneNumber])
+  @@index([customerName])
+}
+
+model BusinessSettings {
+  id                    Int      @id @default(1)
+  businessNameFa        String
+  businessNameEn        String
+  phoneNumber           String
+  secondaryPhoneNumber  String?
+  descriptionFa         String
+  descriptionEn         String
+  heroTitleFa           String
+  heroTitleEn           String
+  heroDescriptionFa     String
+  heroDescriptionEn     String
+  address               String?
+  websiteUrl            String?
+  updatedAt             DateTime @updatedAt
+}

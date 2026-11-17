@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --background: #f7f7f5;
+  --foreground: #141414;
+  --primary: #f5b800;
+  --accent: #1c1c1c;
+  --danger: #c62828;
+  --font-fa: var(--font-vazirmatn);
+  --font-en: var(--font-ibm-plex);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-en);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+html[lang="fa"] body {
+  font-family: var(--font-fa), Tahoma, sans-serif;
+}
+
+html[lang="en"] body {
+  font-family: var(--font-en), "Segoe UI", sans-serif;
+}
+
+/* Extra bottom space for mobile sticky call bar on public pages */
+.public-shell {
+  padding-bottom: 4.75rem;
+}
+
+@media (min-width: 768px) {
+  .public-shell {
+    padding-bottom: 0;
+  }
+}
+
+.leaflet-container {
+  font: inherit;
+}

@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "homeTitle": "Towing & Roadside Assistance",
+    "homeDescription": "Fast professional tow truck, car carrier and roadside assistance",
+    "servicesTitle": "Services & Pricing",
+    "servicesDescription": "View towing and roadside assistance services with clear pricing",
+    "contactTitle": "Contact Us",
+    "contactDescription": "Get in touch with our roadside assistance team",
+    "adminTitle": "Admin Dashboard"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact",
+    "request": "Request Help",
+    "admin": "Admin",
+    "language": "Language",
+    "call": "Call"
+  },
+  "hero": {
+    "primaryCta": "Call Now",
+    "secondaryCta": "Submit Online Request"
+  },
+  "services": {
+    "title": "Services & Pricing",
+    "subtitle": "Active roadside and towing services with transparent pricing",
+    "empty": "No active services at the moment.",
+    "pricing": {
+      "fixed": "Fixed price",
+      "perKm": "Per kilometer",
+      "negotiable": "Negotiable",
+      "base": "Base",
+      "perKilometer": "per km"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "A reliable team for roadside emergencies"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "For emergencies, call us right away",
+    "phone": "Phone",
+    "secondaryPhone": "Secondary phone",
+    "address": "Address",
+    "callNow": "Call now"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "quickLinks": "Quick links"
+  },
+  "request": {
+    "title": "Online Assistance Request",
+    "close": "Close",
+    "stepOf": "Step {current} of {total}",
+    "back": "Back",
+    "continue": "Continue",
+    "submit": "Submit request",
+    "submitting": "Submitting…",
+    "successTitle": "Request submitted",
+    "successBody": "We will contact you shortly. If it is urgent, call us now.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "errorRateLimit": "Too many requests. Please try again later.",
+    "errorValidation": "Please check the form fields.",
+    "honeypot": "Website",
+    "step1": {
+      "title": "What do you need?",
+      "hint": "Select a service"
+    },
+    "step2": {
+      "title": "Vehicle type",
+      "hint": "Select your vehicle type"
+    },
+    "step3": {
+      "title": "Where are you?",
+      "useGps": "Use my current location",
+      "mapHint": "Tap the map or drag the marker. A written address in the next step is also enough.",
+      "gpsDenied": "Location permission denied. Pick a point on the map or enter an address.",
+      "gpsUnsupported": "Geolocation is not available. Pick a point on the map."
+    },
+    "step4": {
+      "title": "Your details",
+      "name": "Full name",
+      "phone": "Mobile number (09...)",
+      "address": "Address or landmark",
+      "note": "Notes (optional)"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "phoneInvalid": "Invalid Iranian mobile number",
+      "addressRequired": "Address is required",
+      "serviceRequired": "Please select a service",
+      "vehicleRequired": "Please select a vehicle type"
+    }
+  },
+  "vehicles": {
+    "passenger_car": "Passenger car",
+    "suv": "SUV",
+    "pickup": "Pickup truck",
+    "van": "Van / Minibus",
+    "motorcycle": "Motorcycle",
+    "heavy": "Heavy vehicle"
+  },
+  "status": {
+    "NEW": "New",
+    "IN_PROGRESS": "In progress",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled"
+  },
+  "admin": {
+    "loginTitle": "Admin login",
+    "username": "Username",
+    "password": "Password",
+    "login": "Sign in",
+    "logout": "Sign out",
+    "invalidCredentials": "Invalid username or password",
+    "dashboard": "Dashboard",
+    "requests": "Requests",
+    "services": "Services",
+    "settings": "Settings",
+    "stats": {
+      "total": "Total requests",
+      "new": "New",
+      "inProgress": "In progress",
+      "completed": "Completed"
+    },
+    "table": {
+      "customer": "Customer",
+      "phone": "Phone",
+      "service": "Service",
+      "vehicle": "Vehicle",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions",
+      "empty": "No requests found",
+      "search": "Search name or phone",
+      "filterStatus": "Filter status",
+      "all": "All",
+      "view": "View",
+      "delete": "Delete",
+      "confirmDelete": "Delete this request?",
+      "save": "Save",
+      "cancel": "Cancel",
+      "adminNote": "Internal note",
+      "location": "Location on map",
+      "noLocation": "No coordinates",
+      "note": "Customer notes",
+      "address": "Address"
+    },
+    "servicesAdmin": {
+      "title": "Manage services",
+      "add": "Add service",
+      "edit": "Edit service",
+      "slug": "Slug",
+      "titleFa": "Persian title",
+      "titleEn": "English title",
+      "descFa": "Persian description",
+      "descEn": "English description",
+      "pricingType": "Pricing model",
+      "basePrice": "Base price (Toman)",
+      "pricePerKm": "Price per km (Toman)",
+      "active": "Active",
+      "sortOrder": "Sort order",
+      "saved": "Saved",
+      "deleted": "Deleted",
+      "confirmDelete": "Delete this service? Prefer deactivating if it has related requests."
+    },
+    "settingsAdmin": {
+      "title": "Business settings",
+      "saved": "Settings saved",
+      "nameFa": "Persian name",
+      "nameEn": "English name",
+      "phone": "Primary phone",
+      "secondaryPhone": "Secondary phone",
+      "descFa": "Persian description",
+      "descEn": "English description",
+      "heroTitleFa": "Persian hero title",
+      "heroTitleEn": "English hero title",
+      "heroDescFa": "Persian hero description",
+      "heroDescEn": "English hero description",
+      "address": "Address",
+      "websiteUrl": "Website URL"
+    }
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "saving": "Saving…",
+    "error": "Error",
+    "success": "Success"
+  }
+}
