@@ -5,7 +5,8 @@ import { Phone } from "lucide-react";
 import { getBusinessSettings } from "@/lib/data";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/lib/i18n/config";
-import { buildAlternates } from "@/lib/seo";
+import { buildPageMetadata, buildBreadcrumbJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/shared/json-ld";
 
 export async function generateMetadata({
   params,
@@ -13,15 +14,17 @@ export async function generateMetadata({
   const { locale: localeParam } = await params;
   if (!isLocale(localeParam)) return {};
   const locale = localeParam as Locale;
-  const dict = await getDictionary(locale);
-  const settings = await getBusinessSettings();
+  const [dict, settings] = await Promise.all([getDictionary(locale), getBusinessSettings()]);
   const name = locale === "fa" ? settings.businessNameFa : settings.businessNameEn;
 
-  return {
-    title: `${dict.meta.contactTitle} | ${name}`,
+  return buildPageMetadata({
+    locale,
+    path: "/contact",
+    title: dict.meta.contactTitle,
+    businessName: name,
     description: dict.meta.contactDescription,
-    alternates: buildAlternates(locale, "/contact"),
-  };
+    imageAlt: dict.experience.heroAlt,
+  });
 }
 
 export default async function ContactPage({
@@ -37,7 +40,8 @@ export default async function ContactPage({
 
   return (
     <div className="site-container">
-      <div className="public-page-heading"><p className="eyebrow">{dict.experience.contactEyebrow}</p><h1>{dict.contact.title}</h1><p>{dict.contact.subtitle}</p></div>
+      <JsonLd data={buildBreadcrumbJsonLd(locale, "/contact", dict.nav.home, dict.nav.contact)} />
+      <div className="public-page-heading"><p className="eyebrow">{dict.contact.title}</p><h1>{dict.meta.contactTitle}</h1><p>{dict.contact.subtitle}</p></div>
 
       <div className="contact-page-grid"><div className="contact-page-card">
         <div>

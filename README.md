@@ -47,7 +47,7 @@ DATABASE_URL="file:../data/app.db"
 SESSION_SECRET="replace-with-a-long-random-secret-at-least-32-chars"
 ADMIN_USERNAME="admin"
 ADMIN_PASSWORD="ChangeMe123!"
-NEXT_PUBLIC_SITE_URL="http://localhost:3000"
+SITE_URL="http://localhost:3000"
 ```
 
 ### 3. Database migrate + seed
@@ -82,7 +82,7 @@ npm run dev
 | `/en`, `/en/services`, `/en/contact`, `/en/admin` | English |
 | `/fa/...` | Redirects to unprefixed Persian URL and stores locale cookie |
 
-Locale preference is stored in the `NEXT_LOCALE` cookie. Persian is the default for new visitors.
+The URL determines the language, even when a language cookie is present: unprefixed URLs always serve Persian, and `/en` URLs always serve English. The language switcher links directly to the matching canonical page. Legacy `/fa/...` URLs permanently redirect (308) to their unprefixed equivalent.
 
 ## Admin account
 
@@ -98,7 +98,7 @@ There is no public registration. Re-running the seed updates the admin password 
 
 ```bash
 cp .env.example .env
-# edit SESSION_SECRET, ADMIN_PASSWORD, NEXT_PUBLIC_SITE_URL
+# edit SESSION_SECRET, ADMIN_PASSWORD, SITE_URL
 
 # first boot: also seed
 RUN_SEED=true docker compose up -d --build
@@ -114,7 +114,7 @@ SQLite is stored on the host at `./data` and mounted into the container at `/app
 1. Create a Proxy Host pointing to `towing-web:3000` (or host `IP:3000`)
 2. Enable Websockets if desired
 3. Force SSL as needed
-4. Set `NEXT_PUBLIC_SITE_URL` to the public HTTPS origin (no trailing slash)
+4. Set `SITE_URL` to the public HTTPS origin (no trailing slash)
 
 No extra reverse-proxy container is required — use your existing NPM instance.
 
@@ -169,3 +169,35 @@ npm run db:studio    # Prisma Studio GUI
 - Currency amounts are stored as integer **Toman**
 - Vehicle types use stable IDs (`passenger_car`, `suv`, …) with translated labels
 - `cacheComponents` is disabled because nearly every page reads SQLite / sessions
+
+## SEO and launch checks
+
+Set `SITE_URL` to the final HTTPS origin, for example `https://your-domain.ir`,
+without a path, query or fragment. It is read on the server at runtime, including
+for `robots.txt` and `sitemap.xml`, so Docker metadata does not retain a build-time
+localhost origin. `NEXT_PUBLIC_SITE_URL` remains a fallback for older installations;
+`SITE_URL` takes precedence. Restart the server after changing it.
+
+Each public page has its own title, description, canonical, Persian/English
+hreflang links, Open Graph metadata and Twitter image preview. The sitemap lists
+only the six canonical public pages. Admin pages remain no-index and are excluded
+from the sitemap. Sitemap modification dates are omitted because rebuilding alone
+does not establish when page content changed.
+
+Business JSON-LD uses the saved name, description, phone and optional address.
+Services structured data uses the active services displayed on the page.
+Prices remain in the visible Toman format; structured data does not mislabel them
+as ISO currency amounts. Coverage, opening hours, reviews and arrival guarantees
+must only be added when verified.
+
+Before launch:
+
+1. Confirm the business names, phone numbers, description and address in admin.
+   Tehran, Iran is the confirmed service area used in both languages and business structured data. Keep it aligned if coverage changes.
+2. Check canonical, hreflang and share-image URLs on the final domain, and confirm
+   that `/robots.txt`, `/sitemap.xml` and image URLs are accessible.
+3. Verify domain ownership in Google Search Console and submit `/sitemap.xml`.
+4. Validate the deployed structured data with Google's Rich Results Test and the
+   Schema.org validator. Eligibility and ranking are determined by search engines.
+
+Run `rtk proxy npm run test:seo` for focused SEO and routing regression checks.

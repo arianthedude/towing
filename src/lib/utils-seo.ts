@@ -1,17 +1,16 @@
-import { defaultLocale, type Locale } from "@/lib/i18n/config";
+export { localizedPath } from "@/lib/i18n/config";
 
 export function getSiteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(
-    /\/$/,
-    "",
+  // Server-only SITE_URL can change at container startup without rebuilding.
+  // Keep the old public variable as a fallback for existing installations.
+  const site = new URL(
+    process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   );
-}
-
-export function localizedPath(locale: Locale, path = "/"): string {
-  const normalized = path.startsWith("/") ? path : `/${path}`;
-  if (locale === defaultLocale) {
-    return normalized === "/" ? "/" : normalized;
+  if (
+    !["http:", "https:"].includes(site.protocol) ||
+    site.username || site.password || site.pathname !== "/" || site.search || site.hash
+  ) {
+    throw new Error("SITE_URL must be an absolute HTTP(S) origin without credentials, a path, query or fragment.");
   }
-  if (normalized === "/") return `/${locale}`;
-  return `/${locale}${normalized}`;
+  return site.origin;
 }

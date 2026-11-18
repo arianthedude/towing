@@ -4,7 +4,8 @@ import { ServiceCards } from "@/components/public/service-cards";
 import { getActiveServices, getBusinessSettings } from "@/lib/data";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/lib/i18n/config";
-import { buildAlternates } from "@/lib/seo";
+import { buildPageMetadata, buildBreadcrumbJsonLd, buildServicesJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/shared/json-ld";
 
 export async function generateMetadata({
   params,
@@ -12,15 +13,17 @@ export async function generateMetadata({
   const { locale: localeParam } = await params;
   if (!isLocale(localeParam)) return {};
   const locale = localeParam as Locale;
-  const dict = await getDictionary(locale);
-  const settings = await getBusinessSettings();
+  const [dict, settings] = await Promise.all([getDictionary(locale), getBusinessSettings()]);
   const name = locale === "fa" ? settings.businessNameFa : settings.businessNameEn;
 
-  return {
-    title: `${dict.meta.servicesTitle} | ${name}`,
+  return buildPageMetadata({
+    locale,
+    path: "/services",
+    title: dict.meta.servicesTitle,
+    businessName: name,
     description: dict.meta.servicesDescription,
-    alternates: buildAlternates(locale, "/services"),
-  };
+    imageAlt: dict.experience.heroAlt,
+  });
 }
 
 export default async function ServicesPage({
@@ -36,7 +39,9 @@ export default async function ServicesPage({
 
   return (
     <div className="site-container pb-20">
-      <div className="public-page-heading"><p className="eyebrow">{dict.experience.servicesEyebrow}</p><h1>{dict.services.title}</h1><p>{dict.services.subtitle}</p></div>
+      <JsonLd data={buildBreadcrumbJsonLd(locale, "/services", dict.nav.home, dict.nav.services)} />
+      {services.length > 0 && <JsonLd data={buildServicesJsonLd(services, locale, dict.meta.servicesTitle)} />}
+      <div className="public-page-heading"><p className="eyebrow">{dict.services.title}</p><h1>{dict.meta.servicesTitle}</h1><p>{dict.services.subtitle}</p></div>
       <div className="mt-2">
         <ServiceCards services={services} locale={locale} dict={dict} />
       </div>

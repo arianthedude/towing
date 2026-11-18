@@ -11,7 +11,8 @@
     "db:deploy": "prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test:seo": "tsx --test scripts/seo.test.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

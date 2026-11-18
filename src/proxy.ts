@@ -1,18 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {
-  defaultLocale,
-  isLocale,
-  LOCALE_COOKIE,
-  type Locale,
-} from "@/lib/i18n/config";
+import { LOCALE_COOKIE } from "@/lib/i18n/config";
 
 const PUBLIC_FILE = /\.[^/]+$/;
-
-function resolveLocale(request: NextRequest): Locale {
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (cookieLocale && isLocale(cookieLocale)) return cookieLocale;
-  return defaultLocale;
-}
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -34,7 +23,7 @@ export function proxy(request: NextRequest) {
     const rest = "/" + segments.slice(2).join("/");
     const url = request.nextUrl.clone();
     url.pathname = rest === "/" ? "/" : rest.replace(/\/$/, "") || "/";
-    const response = NextResponse.redirect(url);
+    const response = NextResponse.redirect(url, 308);
     response.cookies.set(LOCALE_COOKIE, "fa", {
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
@@ -53,15 +42,8 @@ export function proxy(request: NextRequest) {
   }
 
   // Unprefixed paths → Persian (rewrite to /fa/...)
-  const locale = resolveLocale(request);
-
-  // If user previously chose English and hits an unprefixed URL, send them to /en...
-  if (locale === "en") {
-    const url = request.nextUrl.clone();
-    url.pathname = pathname === "/" ? "/en" : `/en${pathname}`;
-    return NextResponse.redirect(url);
-  }
-
+  // The URL owns the language, so canonical Persian URLs stay stable even
+  // after visiting English pages. Cookies must not change indexed content.
   const url = request.nextUrl.clone();
   url.pathname = pathname === "/" ? "/fa" : `/fa${pathname}`;
   const response = NextResponse.rewrite(url);

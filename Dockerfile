@@ -14,7 +14,6 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATABASE_URL="file:../data/app.db"
 ENV SESSION_SECRET="build-time-placeholder-secret-32chars-min"
-ENV NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 RUN mkdir -p data \
   && npx prisma generate \
   && npx prisma migrate deploy \

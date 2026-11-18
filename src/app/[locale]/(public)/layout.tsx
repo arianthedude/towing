@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/public/site-header";
 import { SiteFooter } from "@/components/public/site-footer";
 import { StickyCallButton } from "@/components/public/sticky-call";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/shared/json-ld";
+import { buildLocalBusinessJsonLd } from "@/lib/seo";
 
 /** Business settings & services come from SQLite and change in admin. */
 export const dynamic = "force-dynamic";
@@ -23,6 +25,7 @@ export default async function PublicLayout({
 
   return (
     <div className="public-shell flex min-h-full flex-1 flex-col">
+      <JsonLd data={buildLocalBusinessJsonLd(settings, locale)} />
       <SiteHeader
         locale={locale}
         dict={dict}

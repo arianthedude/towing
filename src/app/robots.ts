@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/utils-seo";
 
+export const dynamic = "force-dynamic";
+
 export default function robots(): MetadataRoute.Robots {
   const site = getSiteUrl();
   return {
@@ -8,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/en/admin", "/fa/admin"],
+        disallow: ["/admin", "/en/admin", "/fa/admin", "/api/"],
       },
     ],
     sitemap: `${site}/sitemap.xml`,

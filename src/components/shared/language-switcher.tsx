@@ -2,16 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { stripLocale, type Locale } from "@/lib/i18n/config";
+import { localizedPath, stripLocale, type Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
-
-function switchHref(target: Locale, pathWithoutLocale: string): string {
-  const path =
-    pathWithoutLocale === "/" ? "" : pathWithoutLocale.replace(/\/$/, "");
-  // Use explicit /fa so proxy can set the locale cookie, then redirect to unprefixed URL.
-  if (target === "fa") return `/fa${path || ""}` || "/fa";
-  return `/en${path || ""}` || "/en";
-}
 
 export function LanguageSwitcher({
   locale,
@@ -23,7 +15,7 @@ export function LanguageSwitcher({
   const pathname = usePathname();
   const { pathname: pathWithoutLocale } = stripLocale(pathname);
   const other: Locale = locale === "fa" ? "en" : "fa";
-  const href = switchHref(other, pathWithoutLocale);
+  const href = localizedPath(other, pathWithoutLocale);
 
   return (
     <Link

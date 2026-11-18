@@ -1,11 +1,11 @@
 {
   "meta": {
-    "homeTitle": "Towing & Roadside Assistance",
-    "homeDescription": "Fast professional tow truck, car carrier and roadside assistance",
-    "servicesTitle": "Services & Pricing",
-    "servicesDescription": "View towing and roadside assistance services with clear pricing",
-    "contactTitle": "Contact Us",
-    "contactDescription": "Get in touch with our roadside assistance team",
+    "homeTitle": "Tehran Towing & Roadside Assistance",
+    "homeDescription": "Towing, flatbed car transport and roadside assistance in Tehran. Explore jump starts, tire repair and service pricing. Request help online or call directly.",
+    "servicesTitle": "Towing Services & Prices in Tehran",
+    "servicesDescription": "Explore towing, flatbed transport, jump starts, tire repair, fuel delivery and mobile mechanic services in Tehran. View Toman prices and confirm by phone.",
+    "contactTitle": "Contact Roadside Assistance in Tehran",
+    "contactDescription": "Arrange towing, flatbed car transport or roadside help in Tehran. Call with your location and vehicle details to discuss the right service and pricing.",
     "adminTitle": "Admin Dashboard"
   },
   "nav": {
@@ -190,7 +190,7 @@
     "success": "Success"
   },
   "experience": {
-    "eyebrow": "ROADSIDE ASSISTANCE, WITH CARE",
+    "eyebrow": "ROADSIDE ASSISTANCE IN TEHRAN",
     "heroAccent": "A calmer way forward.",
     "heroNote": "For urgent assistance, a direct call is always best.",
     "heroAlt": "A flatbed tow truck carrying a silver car on a mountain road",
@@ -224,7 +224,7 @@
     "contactEyebrow": "WHEN THE ROAD HAS OTHER PLANS",
     "contactTitle": "Let’s get you moving again.",
     "contactBody": "Not sure which service you need? Tell us what happened and we’ll discuss the options.",
-    "brandLine": "Towing & roadside assistance",
+    "brandLine": "Towing & roadside assistance in Tehran",
     "menu": "Open navigation",
     "closeMenu": "Close navigation",
     "footerText": "Thoughtful help for the unexpected. A clearer path to your next destination."
